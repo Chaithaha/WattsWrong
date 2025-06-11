@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,10 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;800&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet"/>
   </head>
   <body>
+    <div id="preloader">
+      <img src="./images/Watts_Wrong_Secondary_Logo 1.png" alt="Loading Logo" />
+      <p>We Own the Grid. You Just Live on It.</p>
+    </div>
     <header>
       <a href="/">
         <img
@@ -29,49 +31,74 @@
         </ul>
       </nav>
     </header>
+    <section class="video-hero">
+      <video autoplay loop muted playsinline>
+        <source src="./images/video2.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="hero-content">
+        <h1>We Power the City... and Control It</h1>
+        <p>Experience the ultimate energy dominance.</p>
+      </div>
+    </section>
     <main>
-      <container class="content-left">
+      <section class="content-left scroll-fade-in">
         <div class="sticky-warpper">
           <div class="content-wraper">
             <h1>Watts Wrong Corporation</h1>
-           <h3> The city rose, and we made sure the lights were on.</h3>
+            <h3>We don't just power the city. We practically run it.</h3>
             <p>
-             We are the city’s leading electricity provider powering millions of homes, businesses, and possibilities. As the backbone of urban energy, we fuel everything from quiet evenings to towering skylines. Driven by innovation and unapologetic efficiency, Watts Wrong corp. isn’t afraid to do things differently. While our methods spark debate, our results speak for themselves: uninterrupted power, bold infrastructure, and a relentless push forward. <p>We’re not just lighting the city. We’re shaping its future. Explore how Watts Wrong keeps your world on, even when the conversation gets electric. Because here, energy isn’t just provided. It’s commanded! Welcome to the current. </p>
+              At Watts Wrong, we believe energy isn't just supplied — it's commanded. With decades of dominance across every street, skyline, and socket, we've become more than a provider; we're an institution. From the smallest alley to the tallest tower, our pulse drives the city forward.
+            </p>
+            <p>
+              Sure, we've had our share of controversy — from monopoly whispers to "grid control" conspiracies — but look around: the lights are on, aren't they? Our story is one of bold ambition, relentless growth, and unapologetic influence.
+            </p>
+            <p>
+              This isn't about staying in the background. It's about leading from the grid up. Welcome to Watts Wrong. The power behind everything.
             </p>
           </div>
         </div>
         <div class="image-wrapper">
-          <img src="./images/city-hotel-1 1.png" />
+          <div class="image-with-tooltip">
+            <img class="city-image" src="./images/city-hotel-1 1.png" alt="LEGO City Hotel" />
+            <span class="tooltip-text">MegaCorp Tower - Energy Distribution Hub</span>
+          </div>
         </div>
-      </container>
-      <container class="cta">
-        <h2>Need Electricity in your lego city?</h2>
-        <a href="/contact" class="button">Contact Us</a>
-      </container>
-      <container class="content-right">
+      </section>
+
+      <section class="cta scroll-fade-in">
+        <h2>Need electricity in your LEGO city?</h2>
+        <a href="/contact" class="button">Get Connected</a>
+      </section>
+
+      <section class="content-right scroll-fade-in">
         <div>
-          <img src="./images/city-minifig-1.png" />
+          <div class="image-with-tooltip">
+            <img class="city-image" src="./images/city-minifig-1.png" alt="Watts Wrong Representative" />
+            <span class="tooltip-text">Chief Operations Minifig - Surveillance & Compliance</span>
+          </div>
         </div>
         <div class="sticky-warpper">
           <div class="content-wraper">
-            <h1>Element helmet glasses.</h1>
+            <h1>Always Watching. Always Charging.</h1>
             <p>
-              Dish panel screwdriver head. Torso brick hose flag. Esse cylinder
-              pro vehicle harpoon rem pro. Sit bracket treasure chest qui whip
-              irure. Key cone hat. Helmet fork do harpoon knob wrench.
+              From city council handshakes to quiet alleys buzzing with current, Watts Wrong is everywhere. We don't just respond to the future — we decide how bright it gets.
             </p>
             <p>
-              Dish panel screwdriver head. Torso brick hose flag. Esse cylinder
-              pro vehicle harpoon rem pro. Sit bracket treasure chest qui whip
-              irure. Key cone hat. Helmet fork do harpoon knob wrench.
+              Join the current. Stay powered. Stay watched. Stay... compliant.
             </p>
           </div>
         </div>
-      </container>
+      </section>
     </main>
+
     <footer>
       <a href="/">
-        <img src="./images/Watts_Wrong_Secondary_Logo 1.png" />
+        <img
+          class="footer-logo"
+          src="./images/Watts_Wrong_Secondary_Logo 1.png"
+          alt="Watts Wrong Secondary Logo"
+        />
       </a>
       <nav>
         <ul>
@@ -84,8 +111,42 @@
       <div class="footer-content">
         <a href="#">Terms and Conditions</a>
         <a href="#">Privacy Policy</a>
-        <p>Copyright © Watt’s Wrong 2025</p>
+        <p>Copyright © Watts Wrong Corporation 2025</p>
       </div>
     </footer>
+
+    <script>
+      window.addEventListener('load', function() {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+          setTimeout(function() {
+            preloader.classList.add('fade-out');
+          }, 1000); // Changed to 1 second active display
+        }
+
+        // Intersection Observer for scroll-triggered animations
+        const faders = document.querySelectorAll('.scroll-fade-in');
+
+        const appearOptions = {
+          threshold: 0.1, // Element is 10% in view
+          rootMargin: "0px 0px -50px 0px" // Adjust this to trigger earlier/later
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+              return;
+            } else {
+              entry.target.classList.add('show');
+              appearOnScroll.unobserve(entry.target);
+            }
+          });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+          appearOnScroll.observe(fader);
+        });
+      });
+    </script>
   </body>
 </html>
